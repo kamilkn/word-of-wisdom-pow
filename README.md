@@ -1,8 +1,6 @@
-# Word of Wisdom Service with Proof Of Work DDOS Protection
+# Word of Wisdom Service with PoW DDOS Protection
 
 ## Task
-
-**Design and implement a “Word of Wisdom” tcp server**
 
 - TCP server should be protected from DDOS attacks with the Proof of Work, the challenge-response protocol should be used.
 - The choice of the POW algorithm should be explained
@@ -12,13 +10,15 @@
 ## How to run
 
 Run server
-```
+
+```sh
 docker-compose up -d server
 // You can set env HOST. Default - 0.0.0.0:8001
 ```
 
 Run client
-```
+
+```sh
 docker-compose up -d client
 // You can set env HOST. Default - 0.0.0.0:8001
 ```
@@ -33,10 +33,11 @@ docker-compose up -d client
 - The client sends the solution with the challenge
 - If nonce is valid, the server sent a quote from a "word of wisdom" book
 - If nonce is invalid, the server closes the stream
+- In second commit I added tokio server as second solution. But by default use `std_server`
 
 ## PoW Algorithm
 
-**I used the Hashcash with SHA256 hashing PoW algorithm to set DDoS protection**
+### I used the Hashcash with SHA256 hashing PoW algorithm to set DDoS protection**
 
 - It is quick to implement, and many libraries provide SHA256 hashing
 - It is easy to check the solution
@@ -44,7 +45,7 @@ docker-compose up -d client
 - In this and many cases sha256 is sufficient to protect from DDoS attacks
 - Using Hashcash is a common approach to limit spam and provide DDOS protection
 
-**Tests and benchmarks can be found in the test.rs and benches/pow_benchmark.rs files**
+### Tests and benchmarks can be found in the test.rs and benches/pow_benchmark.rs files
 
 | Difficulty(leading zeros) | Average time to solve |
 |---------------------------|-----------------------|
