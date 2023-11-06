@@ -2,11 +2,10 @@
 mod test {
     use std::net::TcpListener;
     use std::sync::Arc;
-    use crate::server::book::BookService;
+    use crate::server::std_server::book::BookService;
     use crate::client::client::Client;
-    use crate::server::server::Server;
-    use crate::common::pow::{check_solution, PowProvider};
-    use crate::server::store::BookStore;
+    use crate::server::std_server::server::StdServer;
+    use crate::common::{pow::{check_solution, PowProvider}, store::BookStore};
 
     #[test]
     fn test_pow_solver() {
@@ -31,7 +30,7 @@ mod test {
         let address = format!("127.0.0.1:{}", port);
         let mut client = Client::new(address.as_str());
         let book_service = Arc::new(BookService::new(store, pow_provider));
-        let server = Server::new(address, book_service);
+        let server = StdServer::new(address, book_service);
 
         //prep
         let _server_handle = std::thread::spawn(move || {

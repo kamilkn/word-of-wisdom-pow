@@ -1,10 +1,10 @@
 use std::env;
 use std::sync::Arc;
 use log::error;
-use word_of_wisdom_pow::server::store::BookStore;
+use word_of_wisdom_pow::common::store::BookStore;
 use word_of_wisdom_pow::common::pow::PowProvider;
-use word_of_wisdom_pow::server::book::BookService;
-use word_of_wisdom_pow::server::server::Server;
+use word_of_wisdom_pow::server::std_server::book::BookService;
+use word_of_wisdom_pow::server::std_server::server::StdServer;
 
 fn main() {
     env_logger::init();
@@ -16,7 +16,7 @@ fn main() {
     ]);
     let pow_provider = PowProvider::new(2);
     let book_service = Arc::new(BookService::new(book_store, pow_provider));
-    let server = Server::new(address, book_service);
+    let server = StdServer::new(address, book_service);
     match server.start() {
         Ok(_) => {}
         Err(e) => {

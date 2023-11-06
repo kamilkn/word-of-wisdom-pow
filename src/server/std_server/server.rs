@@ -1,18 +1,18 @@
-use std::net::{TcpListener};
+use std::net::TcpListener;
 use std::sync::Arc;
 use std::thread;
 use log::{error, info};
-use crate::server::book::{BookService};
+use crate::server::std_server::book::BookService;
 use crate::error::Error;
 
-pub struct Server {
+pub struct StdServer {
     address: String,
     book_service: Arc<BookService>,
 }
 
-impl Server {
-    pub fn new(address: String, book_service: Arc<BookService>) -> Server {
-        Server { address, book_service }
+impl StdServer {
+    pub fn new(address: String, book_service: Arc<BookService>) -> StdServer {
+      StdServer { address, book_service }
     }
 
     pub fn start(&self) -> Result<(), Error> {

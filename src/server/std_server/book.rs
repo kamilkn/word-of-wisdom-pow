@@ -1,8 +1,7 @@
 use std::io::{BufReader, BufWriter, Error, Read, Write};
 use std::net::{Shutdown, TcpStream};
 use log::info;
-use crate::common::pow::{PowError, PowProvider, PowSolution};
-use crate::server::store::BookStore;
+use crate::common::{pow::{PowError, PowProvider, PowSolution}, store::BookStore};
 
 pub struct BookService {
     store: BookStore,
