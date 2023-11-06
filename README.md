@@ -33,7 +33,7 @@ docker-compose up -d client
 - The client sends the solution with the challenge
 - If nonce is valid, the server sent a quote from a "word of wisdom" book
 - If nonce is invalid, the server closes the stream
-- In second commit I added tokio server as second solution. But by default use `std_server`
+- In second commit I **added Tokio as second server implementation**. But by default use `std_server`
 
 ## PoW Algorithm
 
